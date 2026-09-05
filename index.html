@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<title>Jimothy Black Baby — Hair, But Different.</title>
+<meta name="description" content="Jimothy Black Baby hair products. First drops coming soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="announcement"><span>JIMOTHY BLACK BABY</span><span>HAIR, BUT DIFFERENT.</span><span>FIRST DROP COMING SOON</span></div>
+
+<header class="header">
+  <a class="brand" href="#top" aria-label="Jimothy Black Baby home"><img src="logo.png" alt=""><span>JIMOTHY<br>BLACK BABY</span></a>
+  <nav aria-label="Main"><a href="#shop">SHOP</a><a href="#ideas">IDEAS</a><a href="#about">ABOUT</a></nav>
+  <div class="header-right"><button class="account" id="accountButton">ACCOUNT</button><button class="cart-button" id="cartButton">CART <b>0</b></button><button class="menu" id="menuButton" aria-label="Open menu">☰</button></div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu"><a href="#shop">SHOP</a><a href="#ideas">IDEAS</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a></div>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-copy">
+    <p class="kicker">JIMOTHY BLACK BABY / 001</p>
+    <h1>HAIR.<br><em>BUT<br>DIFFERENT.</em></h1>
+    <p class="lead">We're making simple hair products with a big personality. No giant catalogue. Just the beginning.</p>
+    <div class="actions"><a class="button" href="#shop">SEE THE DROP <span>↘</span></a><a class="ghost" href="#ideas">SHARE AN IDEA</a></div>
+  </div>
+  <div class="hero-visual">
+    <div class="orb"></div><div class="burst">JBB<br><small>001</small></div>
+    <img src="logo.png" alt="Jimothy Black Baby character">
+    <p class="vertical">JIMOTHY BLACK BABY / HAIR PRODUCTS / 2026</p>
+  </div>
+</section>
+
+<div class="ticker"><div>JIMOTHY BLACK BABY ✦ HAIR, BUT DIFFERENT ✦ KEEP IT SIMPLE ✦ JIMOTHY BLACK BABY ✦ HAIR, BUT DIFFERENT ✦ KEEP IT SIMPLE ✦</div></div>
+
+<section id="shop" class="section shop">
+  <div class="section-top"><div><p class="kicker">THE COLLECTION / 001</p><h2>SHOP</h2></div><p class="muted">No products are live yet.<br>We're building the first drop.</p></div>
+  <div class="product-card">
+    <div class="product-art"><span>001</span><img src="logo.png" alt=""></div>
+    <div class="product-info"><p class="kicker">COMING SOON / HAIR CARE</p><h3>SEA SALT<br>SPRAY</h3><p>A simple starting point for textured, beachy-looking hair. The first formula is being worked on now.</p><div class="product-meta"><span>STATUS</span><strong>IN DEVELOPMENT</strong></div><button class="notify" id="notifyButton">GET DROP UPDATES</button></div>
+  </div>
+</section>
+
+<section id="ideas" class="ideas">
+  <div class="ideas-copy"><p class="kicker">GOT AN IDEA?</p><h2>HELP US<br>MAKE THE<br>NEXT THING.</h2><p>Have a hair-product concept you think Jimothy Black Baby should make? We'd love to hear it.</p><button class="button" id="ideaButton">SUGGEST A PRODUCT <span>→</span></button></div>
+  <div class="ideas-side"><div class="idea-symbol">?</div><p>IDEA BOX / <strong>NOT OPEN YET</strong></p><span>EMAIL SUBMISSIONS COMING SOON</span></div>
+</section>
+
+<section id="about" class="about">
+  <div class="about-art"><img src="logo.png" alt="Jimothy Black Baby character"><span>JBB / 001</span></div>
+  <div class="about-copy"><p class="kicker">THE IDEA</p><h2>KEEP IT<br>WEIRD.</h2><p>Jimothy Black Baby is a young brand making hair products for people who want something a little different.</p><p>We're starting small, learning as we go, and building products we'd actually want to use.</p><div class="stats"><div><strong>001</strong><span>FIRST DROP</span></div><div><strong>∞</strong><span>IDEAS TO TRY</span></div></div></div>
+</section>
+
+<section id="contact" class="contact section">
+  <p class="kicker">FIRST IN LINE</p><h2>GET THE<br>UPDATE.</h2><p class="muted center">Join the list for first looks and launch news.</p>
+  <form id="signup"><input id="email" type="email" placeholder="YOUR EMAIL ADDRESS" autocomplete="email" required><button class="button">JOIN →</button></form><p id="message" class="message"></p>
+</section>
+</main>
+
+<footer><div><strong>JIMOTHY BLACK BABY</strong><span>© <span id="year"></span> — ALL RIGHTS RESERVED</span></div><div><a href="#shop">SHOP</a><a href="#ideas">IDEAS</a><a href="#about">ABOUT</a></div></footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="panel cart-panel" id="cart" aria-hidden="true"><button class="close" id="closeCart">×</button><p class="kicker">YOUR CART</p><h2>EMPTY<br>FOR NOW.</h2><p>Products aren't available yet. When the first drop lands, your cart will live here.</p><button class="button" id="keep">KEEP EXPLORING</button></aside>
+
+<aside class="panel account-panel" id="accountPanel" aria-hidden="true"><button class="close" id="closeAccount">×</button><p class="kicker">JBB ACCOUNT</p><h2>ACCOUNT<br>COMING SOON.</h2><p>We're leaving account creation off for this first version. When you're ready, we can connect sign-in with Google, Apple, Microsoft and more.</p><button class="button" id="accountOk">GOT IT</button></aside>
+
+<div class="modal" id="ideaModal" aria-hidden="true"><div class="modal-box"><button class="close" id="closeIdea">×</button><p class="kicker">PRODUCT IDEAS</p><h2>NOT OPEN<br>YET.</h2><p>We haven't made the idea inbox yet. Once you and your friend create the JBB email, this button can open an email form for customers to send product concepts.</p><button class="button" id="ideaOk">OK, GOT IT</button></div></div>
+
+<div class="modal" id="notifyModal" aria-hidden="true"><div class="modal-box"><button class="close" id="closeNotify">×</button><p class="kicker">DROP UPDATES</p><h2>COMING<br>SOON.</h2><p>We'll connect this to the real signup system when you're ready. For now, the site is just showing the experience.</p><button class="button" id="notifyOk">CLOSE</button></div></div>
+<script src="script.js"></script>
+</body></html>
