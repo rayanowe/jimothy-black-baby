@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JBB — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:#f5f3ed;font-family:Inter,sans-serif;padding:30px 20px}
+.container{max-width:800px;margin:0 auto}
+h1{font-family:"Archivo Black",sans-serif;color:#d7ff00;font-size:36px;margin:0 0 10px;text-transform:uppercase}
+.card{background:#121212;border:1px solid #282828;padding:25px;margin-bottom:20px;border-radius:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:25px}
+.stat-box{background:#1a1a1a;border:1px solid #333;padding:20px;text-align:center}
+.stat-box strong{display:block;font-size:38px;font-family:"Archivo Black";color:#d7ff00}
+.stat-box span{font-size:10px;font-weight:800;letter-spacing:.15em;color:#888}
+.login-box{max-width:360px;margin:100px auto;text-align:center}
+input{width:100%;padding:14px;background:#1a1a1a;border:1px solid #333;color:#fff;font-size:14px;margin-bottom:12px;outline:none;text-align:center}
+input:focus{border-color:#d7ff00}
+button{width:100%;padding:14px;background:#d7ff00;color:#000;border:0;font-weight:800;font-size:11px;letter-spacing:.12em;cursor:pointer}
+button:hover{background:#ff9ccf}
+.order-item{background:#181818;border-left:4px solid #d7ff00;padding:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.order-info strong{color:#fff;font-size:15px;display:block}
+.order-info span{color:#aaa;font-size:12px;display:block;margin-top:4px}
+.btn-delivered{width:auto;padding:8px 14px;font-size:10px;background:#252525;color:#fff;border:1px solid #444}
+.btn-delivered:hover{background:#d7ff00;color:#000}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="loginGate" class="login-box card">
+    <h1>JBB ADMIN</h1>
+    <p style="color:#888;font-size:12px;margin-bottom:20px;">Enter passcode to view analytics & school orders</p>
+    <form id="loginForm">
+      <input type="password" id="passcode" placeholder="ENTER PASSCODE" required>
+      <button type="submit">UNLOCK DASHBOARD</button>
+    </form>
+    <p id="loginError" style="color:#ff9ccf;font-size:11px;margin-top:10px;"></p>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <h1>DASHBOARD / ANALYTICS</h1>
+    <p style="color:#888;font-size:12px;margin-bottom:25px;">Private site metrics and pending school deliveries.</p>
+    
+    <div class="grid">
+      <div class="stat-box"><strong id="totalViews">0</strong><span>TOTAL WEBSITE OPENS</span></div>
+      <div class="stat-box"><strong id="totalOrders">0</strong><span>SCHOOL ORDERS PLACED</span></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+        <h2 style="font-family:'Archivo Black';margin:0;font-size:20px;color:#fff;">SCHOOL ORDERS LIST</h2>
+        <button id="clearOrders" style="width:auto;padding:6px 12px;background:#333;color:#aaa;font-size:9px;">CLEAR ALL</button>
+      </div>
+      <div id="ordersList"><p style="color:#666;font-size:12px;">No active orders found.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PASS = "admin13";
+document.getElementById("loginForm").addEventListener("submit", e => {
+  e.preventDefault();
+  if(document.getElementById("passcode").value === PASS) {
+    document.getElementById("loginGate").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+    loadStats();
+  } else {
+    document.getElementById("loginError").textContent = "Incorrect passcode!";
+  }
+});
+
+function loadStats() {
+  document.getElementById("totalViews").textContent = localStorage.getItem("jbb_views") || "0";
+  const orders = JSON.parse(localStorage.getItem("jbb_orders") || "[]");
+  document.getElementById("totalOrders").textContent = orders.length;
+  
+  const list = document.getElementById("ordersList");
+  if(orders.length === 0) {
+    list.innerHTML = '<p style="color:#666;font-size:12px;">No orders recorded yet.</p>';
+    return;
+  }
+  
+  list.innerHTML = orders.map((o, idx) => `
+    <div class="order-item" id="order-${idx}">
+      <div class="order-info">
+        <strong>${o.name} (${o.grade})</strong>
+        <span>Item: ${o.item} | Pay: ${o.pay}</span>
+        <span style="color:#666;font-size:10px;">Placed: ${o.date}</span>
+      </div>
+      <button class="btn-delivered" onclick="markDelivered(${idx})">MARK DELIVERED</button>
+    </div>
+  `).join("");
+}
+
+function markDelivered(idx) {
+  let orders = JSON.parse(localStorage.getItem("jbb_orders") || "[]");
+  orders.splice(idx, 1);
+  localStorage.setItem("jbb_orders", JSON.stringify(orders));
+  loadStats();
+}
+
+document.getElementById("clearOrders").onclick = () => {
+  if(confirm("Clear all orders?")) {
+    localStorage.removeItem("jbb_orders");
+    loadStats();
+  }
+};
+</script>
+</body>
+</html>
